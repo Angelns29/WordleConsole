@@ -11,6 +11,9 @@ namespace Wordle
 {
     public class Wordle
     {
+        /// <summary>
+        /// Metode Main on s'executa tot el programa
+        /// </summary>
         public static void Main()
         {
             Wordle app = new Wordle();
@@ -27,6 +30,7 @@ namespace Wordle
             string idioma = "cat";
             do
             {
+                Console.Clear();
                 WordleTitle();
                 MostrarOpcions(idioma);
                 endGame = EscollirOpcio(ref idioma);
@@ -57,15 +61,10 @@ namespace Wordle
         /// <returns>Torna l'idioma que ha escollit l'usuari</returns>
         public string DemanarIdioma(ref string idioma)
         {
-            if (idioma == "es") Console.WriteLine("Idioma por defecto: Catalan");
-            else if (idioma == "en") Console.WriteLine("Default language: Catalan");
-            else if (idioma == "cat") Console.WriteLine("Idioma per defecte: Català");
+            StreamReader defaultAlert = File.OpenText("../../../lang/" + idioma + "/defaultLanguage.txt");
+            Console.WriteLine(defaultAlert.ReadLine());
             string[] idiomes = ImprimirIdiomes("../../../config.txt");
-            for (int i = 0; i < idiomes.Length; i += 2)
-            {
-                Console.WriteLine("- " + idiomes[i]);
-            }
-            Console.Write("Escull una opció: ");
+            Console.Write(defaultAlert.ReadLine());
             string opcio = Console.ReadLine().Replace("à", "a").Replace("è", "e");
             Console.Clear();
             return opcio;
@@ -75,7 +74,8 @@ namespace Wordle
         /// Metode per cambiar d'idioma
         /// </summary>
         /// <param name="idioma">Es pasa per referencia la variable idioma on per defecte es Català</param>
-        /// <returns>Retorna un string segons l'idioma: es, en o cat</returns>
+        /// <param name="opcio">Es pasa l'idioma que l'usuari ha introduit abans a la funcio DemanarIdioma()</param>
+        /// <returns>Retorna un string segons l'idioma: es, en o cat, si l'usuari ha introoduït un idioma no existent en el programa retornarà cat per defecte</returns>
         public string SetIdioma(ref string idioma, string opcio)
         {
             string[] idiomes = ImprimirIdiomes("../../../config.txt");
@@ -116,135 +116,71 @@ namespace Wordle
             Console.WriteLine("\t\t\t   " + @"      '---" + "                         `----'              `----'");
             Console.WriteLine();
         }
+
         /// <summary>
         /// Mostra per pantalla les opcions a l'aplicació
         /// </summary>
-        /// <param name="idioma">Segons l'idioma de la variable mostrarà una cosa o un altre</param>
+        /// <param name="idioma">Segons l'idioma de la variable mostrarà en un idioma o un altre</param>
         void MostrarOpcions(string idioma)
         {
             Console.ForegroundColor = ConsoleColor.White;
-            switch (idioma)
+            CambiarColor("COLOR", ConsoleColor.White);
+            StreamReader menu = File.OpenText("../../../lang/" + idioma + "/optionMenu.txt");
+            for (int i = 0; i < 5; i++)
             {
-                case "es":
-                    Console.WriteLine("Idioma: Español");
-                    Console.WriteLine("1- JUGAR");
-                    Console.WriteLine("2- HISTORICO DE JUGADORES");
-                    Console.WriteLine("3- CAMBIAR IDIOMA");
-                    Console.WriteLine("4- SALIR");
-                    break;
-                case "en":
-                    Console.WriteLine("Language: English");
-                    Console.WriteLine("1- PLAY");
-                    Console.WriteLine("2- PLAYER'S HISTORY");
-                    Console.WriteLine("3- CHANGE LANGUAGE");
-                    Console.WriteLine("4- EXIT");
-                    break;
-                case "cat":
-                    Console.WriteLine("Llenguatge: Catala");
-                    Console.WriteLine("1- JUGAR");
-                    Console.WriteLine("2- HISTÒRIC DE JUGADORS");
-                    Console.WriteLine("3- CAMBIAR IDIOMA");
-                    Console.WriteLine("4- SORTIR");
-                    break;
+                Console.WriteLine(menu.ReadLine());
             }
+            menu.Close();
         }
 
+        /// <summary>
+        /// Funcio que demana a l'usuari que esculli una opcio de les diferent mostrades abans amb el metode MostrarOpcions()
+        /// </summary>
+        /// <param name="idioma">Segons l'idioma de la variable mostrarà en un idioma o un altre</param>
+        /// <returns>Retorna un booleà per si l'usuari vol sortir acabar el programa </returns>
         public bool EscollirOpcio(ref string idioma)
         {
             bool endGame = false;
             int resultat = 0;
-            if (idioma == "es")
+            StreamReader accionsMenu = File.OpenText("../../../lang/" + idioma + "/optionMenu.txt");
+            for (int i = 0; i < 5; i++)
             {
-                Console.Write("Que quieres hacer: ");
-                string opcio = Console.ReadLine();
-                switch (opcio.ToUpper())
-                {
-                    case "1":
-                        Console.Clear();
-                        Console.ReadLine();
-                        WordlePlay(idioma, resultat);
-                        break;
-                    case "2":
-                        MostrarHistoricJugadors(idioma);
-                        break;
-                    case "3":
-                        string opcioIdioma = DemanarIdioma(ref idioma);
-                        SetIdioma(ref idioma, opcioIdioma);
-                        break;
-                    case "4":
-                        PrintImage("../../../lang/", idioma + "/goodbye.txt");
-                        Console.WriteLine("Hecho por Angel Navarrete");
-                        endGame = true;
-                        break;
-                    default:
-                        Console.WriteLine("Opcion Incorrecta");
-                        Console.ReadLine();
-                        Console.Clear();
-                        break;
-                }
+                accionsMenu.ReadLine();
             }
-            else if (idioma == "en")
+            Console.Write(accionsMenu.ReadLine());
+            string opcio = Console.ReadLine();
+            switch (opcio.ToUpper())
             {
-                Console.Write("What do you want to do: ");
-                string opcio = Console.ReadLine();
-                switch (opcio.ToUpper())
-                {
-                    case "1":
-                        WordlePlay(idioma, resultat);
-                        break;
-                    case "2":
-                        MostrarHistoricJugadors(idioma);
-                        break;
-                    case "3":
-                        string opcioIdioma = DemanarIdioma(ref idioma);
-                        SetIdioma(ref idioma, opcioIdioma);
-                        break;
-                    case "4":
-                        PrintImage("../../../lang/", idioma + "/goodbye.txt");
-                        Console.WriteLine("Made by Angel Navarrete");
-                        endGame = true;
-                        break;
-                    default:
-                        Console.WriteLine("Incorrect option");
-                        Console.ReadLine();
-                        Console.Clear();
-                        break;
-                }
+                case "1":
+                    WordlePlay(idioma, resultat);
+                    break;
+                case "2":
+                    MostrarHistoricJugadors(idioma);
+                    break;
+                case "3":
+                    string opcioIdioma = DemanarIdioma(ref idioma);
+                    SetIdioma(ref idioma, opcioIdioma);
+                    break;
+                case "4":
+                    PrintImage("../../../lang/", idioma + "/goodbye.txt");
+                    Console.WriteLine(accionsMenu.ReadLine());
+                    endGame = true;
+                    break;
+                case "1987":
+                    Console.Clear();
+                    Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
+                    PrintImage("../../../lang/", "easteregg.txt");
+                    Console.ReadLine();
+                    endGame = true;
+                    break;
+                default:
+                    accionsMenu.ReadLine();
+                    Console.WriteLine(accionsMenu.ReadLine());
+                    Console.ReadLine();
+                    Console.Clear();
+                    break;
             }
-            else if (idioma == "cat")
-            {
-                Console.Write("Que vols fer: ");
-                string opcio = Console.ReadLine();
-                switch (opcio.ToUpper())
-                {
-                    case "1":
-                        WordlePlay(idioma, resultat);
-                        break;
-                    case "2":
-                        MostrarHistoricJugadors(idioma);
-                        break;
-                    case "3":
-                        string opcioIdioma = DemanarIdioma(ref idioma);
-                        SetIdioma(ref idioma, opcioIdioma);
-                        break;
-                    case "4":
-                        PrintImage("../../../lang/", idioma + "/goodbye.txt");
-                        Console.WriteLine("Fet per Angel Navarrete");
-                        endGame = true;
-                        break;
-                    case "1987":
-                        Console.Clear();
-                        PrintImage("../../../lang/", "easteregg.txt");
-                        Console.ReadLine();
-                        endGame = true;
-                        break;
-                    default:
-                        Console.WriteLine("Opcio Incorrecta");
-                        Console.ReadLine();
-                        Console.Clear();
-                        break;
-                }
-            }
+            accionsMenu.Close();
             return endGame;
         }
 
@@ -260,11 +196,11 @@ namespace Wordle
             Informacio(idioma);
 
             //ADVERTENCIA DE FORMAT
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            if (idioma == "es") Console.WriteLine("[Las palabras a encontrar y a introducir son de 5 letras]");
-            else if (idioma == "en") Console.WriteLine("[The words to be found and entered will be 5 letters long]");
-            else if (idioma == "cat") Console.WriteLine("[Les paraules a trobar i a introduir seran de 5 lletres]");
-            Console.ForegroundColor = ConsoleColor.White;
+            CambiarColor("COLOR", ConsoleColor.Yellow);
+            StreamReader info = File.OpenText("../../../lang/" + idioma + "/infoInGame.txt");
+            Console.WriteLine(info.ReadLine());
+
+            CambiarColor("COLOR", ConsoleColor.White);
 
             int intents = 6;
             string paraulaATrobar = GenerarParaulaAleatoria(idioma);
@@ -281,14 +217,30 @@ namespace Wordle
                 {
                     if (paraulaCorrecta == false || paraulaJugador == string.Empty)
                     {
-                        Console.WriteLine("Introduce palabrita magica");
+                        StreamReader inputParaula = File.OpenText("../../../lang/" + idioma + "/inputParaula.txt");
+                        Console.Write(inputParaula.ReadToEnd());
+                        inputParaula.Close();
+                        paraulaCorrecta = IntroduirParaula(idioma, paraulaATrobar, ref paraulaJugador);
+                        if (paraulaCorrecta == false)
+                        {
+                            CambiarColor("COLOR", ConsoleColor.Red);
+                            Console.WriteLine(info.ReadLine());
+                            CambiarColor("COLOR", ConsoleColor.White);
+                        }
+                    }
+                } while (paraulaCorrecta == false || paraulaJugador == string.Empty);
+                do
+                {
+                    paraulaCorrecta = ComprovarCaractersParaulaJugador(paraulaJugador, idioma);
+                    if (paraulaCorrecta == false)
+                    {
+                        StreamReader inputParaula = File.OpenText("../../../lang/" + idioma + "/inputParaula.txt");
+                        Console.Write(inputParaula.ReadToEnd());
+                        inputParaula.Close();
                         paraulaCorrecta = IntroduirParaula(idioma, paraulaATrobar, ref paraulaJugador);
                     }
-                    paraulaCorrecta = ComprovarCaractersParaulaJugador(paraulaJugador);
-
-                } while (paraulaCorrecta == false || paraulaJugador == string.Empty);
-
-
+                } while (paraulaCorrecta == false);
+                info.Close();
 
                 contadorLetrasCorrectas = MostrarParaula(paraulaJugador, paraulaATrobar, contadorLetrasCorrectas);
                 intents--;
@@ -314,7 +266,8 @@ namespace Wordle
         /// </summary>
         /// <param name="idioma">Segons l'idioma mostrarà en un idioma o un altre</param>
         /// <param name="paraulaATrobar">Paraula Genrada aleatoriament per el programa</param>
-        /// <returns>Retorna la paraula introduida per el jugador correctament formatejada</returns>
+        /// <param name="paraulaJugador">Parametre on s'emmagatzema la paraula del jugador</param>
+        /// <returns>Retorna un booleà per saber si la paraula esta correctament formatejada</returns>
         public bool IntroduirParaula(string idioma, string paraulaATrobar, ref string paraulaJugador)
         {
             paraulaJugador = Console.ReadLine();
@@ -323,9 +276,12 @@ namespace Wordle
             if (paraulaJugador.Length < paraulaATrobar.Length || paraulaJugador.Length > 5)
             {
                 CambiarColor("COLOR", ConsoleColor.Yellow);
-                if (idioma == "es") Console.WriteLine("[La palabra a introducir ha de ser de 5 letras]");
-                else if (idioma == "en") Console.WriteLine("[The word to enter must be 5 letters]");
-                else if (idioma == "cat") Console.WriteLine("[La paraula a introduir ha de ser de 5 lletres]");
+                StreamReader info = File.OpenText("../../../lang/" + idioma + "/infoInGame.txt");
+                for (int i = 0; i < 3; i++)
+                {
+                    info.ReadLine();
+                }
+                Console.WriteLine(info.ReadLine());
                 CambiarColor("COLOR", ConsoleColor.White);
                 //paraulaJugador = "error";
                 correcte = false;
@@ -362,21 +318,20 @@ namespace Wordle
         /// <returns>Retorna la quantitat de intents restants</returns>
         public int MostrarIntents(string idioma, int intents)
         {
+            StreamReader intentsAlert = File.OpenText("../../../lang/" + idioma + "/attemp.txt");
             if (intents > 3)
             {
                 CambiarColor("FONS", ConsoleColor.Black);
                 CambiarColor("COLOR", ConsoleColor.White);
-                if (idioma == "es") Console.WriteLine("\nIntentos: " + intents);
-                else if (idioma == "en") Console.WriteLine("\nAttempts: " + intents);
-                else if (idioma == "cat") Console.WriteLine("\nIntents: " + intents);
+                Console.WriteLine();
+                Console.Write(intentsAlert.ReadToEnd() + intents + "\n");
             }
             else if (intents > 1)
             {
                 CambiarColor("COLOR", ConsoleColor.Yellow);
                 CambiarColor("FONS", ConsoleColor.Black);
-                if (idioma == "es") Console.WriteLine("\nIntentos: " + intents);
-                else if (idioma == "en") Console.WriteLine("\nAttempts: " + intents);
-                else if (idioma == "cat") Console.WriteLine("\nIntents: " + intents);
+                Console.WriteLine();
+                Console.Write(intentsAlert.ReadToEnd() + intents + "\n");
                 CambiarColor("COLOR", ConsoleColor.White);
                 CambiarColor("FONS", ConsoleColor.Black);
             }
@@ -384,33 +339,30 @@ namespace Wordle
             {
                 CambiarColor("FONS", ConsoleColor.Black);
                 CambiarColor("COLOR", ConsoleColor.Red);
-                if (idioma == "es") Console.WriteLine("\nIntentos: " + intents);
-                else if (idioma == "en") Console.WriteLine("\nAttempts: " + intents);
-                else if (idioma == "cat") Console.WriteLine("\nIntents: " + intents);
+                Console.WriteLine();
+                Console.Write(intentsAlert.ReadToEnd() + intents + "\n");
                 CambiarColor("COLOR", ConsoleColor.White);
 
             }
             return intents;
         }
+
         /// <summary>
         /// Funcio que Controla que la paraula introduida sigui sense caracers especials (. , ; ñ ç etc...).
         /// </summary>
         /// <param name="paraulaJugador">Paraula introduïda inicialment per l'usuari</param>
         /// <returns>Retorna la paraula correctament formatejada</returns>
-        public bool ComprovarCaractersParaulaJugador(string paraulaJugador)
+        public bool ComprovarCaractersParaulaJugador(string paraulaJugador, string idioma)
         {
             bool correcte = true;
+            StreamReader error = File.OpenText("../../../lang/" + idioma + "/errorSpecialCharacters.txt");
             foreach (char lletra in paraulaJugador)
             {
-                while (lletra < 65 || lletra > 122)
+                if (lletra < 65 || lletra > 122)
                 {
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("[La paraula no pot contenir numeros ni caracters especials]");
+                    Console.WriteLine(error.ReadLine());
                     Console.ForegroundColor = ConsoleColor.White;
-                    //Console.WriteLine("Introdueix una Paraula");
-                    //paraulaJugador = Console.ReadLine();
-                    //break;
-                    //return "error";
                     correcte = false;
                     return correcte;
                 }
@@ -465,11 +417,8 @@ namespace Wordle
         void WordleWin(string idioma)
         {
             Console.Clear();
-            PrintImage("../../../lang/" + idioma + "/", "win.txt");
             CambiarColor("COLOR", ConsoleColor.Green);
-            if (idioma == "es") Console.WriteLine("\n FELICIDADES HAS ENCONTRADO LA PALABRA");
-            else if (idioma == "en") Console.WriteLine("\n CONGRATULATIONS YOU FIND THE WORD");
-            else if (idioma == "cat") Console.WriteLine("\n FELICITATS HAS TROBAT LA PARAULA");
+            PrintImage("../../../lang/" + idioma + "/", "win.txt");
             CambiarColor("COLOR", ConsoleColor.White);
         }
 
@@ -480,40 +429,21 @@ namespace Wordle
         /// <param name="idioma">Segons l'idioma mostrarà en un idioma o un altre</param>
         void WordleLose(string paraulaATrobar, string idioma)
         {
-            if (idioma == "es")
-            {
-                CambiarColor("FONS", ConsoleColor.Black);
-                Console.Clear();
-                CambiarColor("COLOR", ConsoleColor.White);
-                PrintImage("../../../lang/" + idioma + "/", "lose.txt");
-                CambiarColor("COLOR", ConsoleColor.Red);
-                Console.WriteLine("\nIntentos Agotados");
-                Console.ForegroundColor = ConsoleColor.White;
-                CambiarColor("COLOR", ConsoleColor.White);
-                Console.WriteLine("La Palabra era: " + paraulaATrobar);
-            }
-            else if (idioma == "en")
-            {
-                CambiarColor("FONS", ConsoleColor.Black);
-                Console.Clear();
-                CambiarColor("COLOR", ConsoleColor.White);
-                PrintImage("../../../lang/" + idioma + "/", "lose.txt");
-                CambiarColor("COLOR", ConsoleColor.Red);
-                Console.WriteLine("\nAttempts exhausted");
-                CambiarColor("COLOR", ConsoleColor.White);
-                Console.WriteLine("The Word was: " + paraulaATrobar);
-            }
-            else if (idioma == "cat")
-            {
-                CambiarColor("FONS", ConsoleColor.Black);
-                Console.Clear();
-                CambiarColor("COLOR", ConsoleColor.White);
-                PrintImage("../../../lang/" + idioma + "/", "lose.txt");
-                CambiarColor("COLOR", ConsoleColor.Red);
-                Console.WriteLine("\nIntents Esgotats");
-                CambiarColor("COLOR", ConsoleColor.White);
-                Console.WriteLine("La Paraula era: " + paraulaATrobar);
-            }
+
+            StreamReader lose = File.OpenText("../../../lang/" + idioma + "/loseAttemps.txt");
+            CambiarColor("FONS", ConsoleColor.Black);
+            Console.Clear();
+            CambiarColor("COLOR", ConsoleColor.White);
+            PrintImage("../../../lang/" + idioma + "/", "lose.txt");
+            CambiarColor("COLOR", ConsoleColor.Red);
+            Console.WriteLine("\n");
+            Console.WriteLine(lose.ReadLine());
+            Console.ForegroundColor = ConsoleColor.White;
+            CambiarColor("COLOR", ConsoleColor.White);
+            Console.Write(lose.ReadLine());
+            Console.Write(paraulaATrobar + "\n");
+            lose.Close();
+
         }
 
         /// <summary>
@@ -525,74 +455,26 @@ namespace Wordle
         bool PlayAgain(string idioma, int resultat)
         {
             bool playagain = false;
-            if (idioma == "es")
+            StreamReader menuPlayAgain = File.OpenText("../../../lang/" + idioma + "/menuPlayAgain.txt");
+            Console.WriteLine(menuPlayAgain.ReadLine());
+            string opcio = Console.ReadLine();
+            switch (opcio.ToUpper())
             {
-                Console.WriteLine("Quieres volver a jugar o salir");
-                string opcio = Console.ReadLine();
-                switch (opcio.ToUpper())
-                {
-                    case "JUGAR":
-                        playagain = true;
-                        WordlePlay(idioma, resultat);
-                        break;
-                    case "SALIR":
-                        InsertarResultatJugador(resultat, idioma);
-                        PrintImage("../../../lang/" + idioma + "/", "goodbye.txt");
-                        Environment.Exit(0);
-                        break;
-                    default:
-                        Console.WriteLine("Opcion Incorrecta");
-                        PlayAgain(idioma, resultat);
-                        break;
-                }
+                case "1":
+                    playagain = true;
+                    WordlePlay(idioma, resultat);
+                    break;
+                case "0":
+                    InsertarResultatJugador(resultat, idioma);
+                    PrintImage("../../../lang/" + idioma + "/", "goodbye.txt");
+                    Environment.Exit(0);
+                    break;
+                default:
+                    Console.WriteLine(menuPlayAgain.ReadLine());
+                    PlayAgain(idioma, resultat);
+                    break;
             }
-            else if (idioma == "en")
-            {
-                Console.WriteLine("Do you want to play again or quit");
-                string opcio = Console.ReadLine();
-                switch (opcio.ToUpper())
-                {
-                    case "PLAY":
-                    case "PLAYAGAIN":
-                    case "PLAY AGAIN":
-                        playagain = true;
-                        WordlePlay(idioma, resultat);
-                        break;
-                    case "QUIT":
-                    case "EXIT":
-                        InsertarResultatJugador(resultat, idioma);
-                        PrintImage("../../../lang/" + idioma + "/", "_goodbye.txt");
-                        Environment.Exit(0);
-                        break;
-                    default:
-                        Console.WriteLine("Incorrect Option");
-                        PlayAgain(idioma, resultat);
-                        break;
-                }
-            }
-            else if (idioma == "cat")
-            {
-                Console.WriteLine("Vols tornar a jugar o sortir");
-                string opcio = Console.ReadLine();
-                switch (opcio.ToUpper())
-                {
-                    case "JUGAR":
-                        playagain = true;
-                        WordlePlay(idioma, resultat);
-                        break;
-                    case "SORTIR":
-                        InsertarResultatJugador(resultat, idioma);
-                        PrintImage("../../../lang/" + idioma + "/", "_goodbye.txt");
-                        Environment.Exit(0);
-                        break;
-                    default:
-                        Console.WriteLine("Opcio Incorrecta");
-                        PlayAgain(idioma, resultat);
-                        break;
-                }
-            }
-
-
+            menuPlayAgain.Close();
             return playagain;
         }
 
@@ -603,18 +485,15 @@ namespace Wordle
         /// <param name="idioma"> Segons l'idioma preguntarà al jugador en un idioma o en un altre</param>
         public void InsertarResultatJugador(int resultat, string idioma)
         {
-            if (idioma == "es") Console.Write("Introduce tu nombre: ");
-            else if (idioma == "en") Console.Write("Enter your name: ");
-            else if (idioma == "cat") Console.Write("Introdueix el teu nom: ");
-
+            StreamReader nomUsuariAlert = File.OpenText("../../../lang/" + idioma + "/name.txt");
+            Console.Write(nomUsuariAlert.ReadLine());
             string nombre = Console.ReadLine();
             do
             {
                 if (nombre.Length == 0)
                 {
-                    if (idioma == "es") Console.WriteLine("\n No has escrito un nombre");
-                    else if (idioma == "en") Console.WriteLine("\n You have not entered a name");
-                    else if (idioma == "cat") Console.WriteLine("\n No has escrit cap nom");
+                    Console.WriteLine();
+                    Console.WriteLine(nomUsuariAlert.ReadLine());
                     nombre = Console.ReadLine();
                 }
             } while (nombre.Length == 0);
@@ -639,9 +518,10 @@ namespace Wordle
         void MostrarHistoricJugadors(string idioma)
         {
             Console.Clear();
-            if (idioma == "es") Console.WriteLine("\n Historico de Jugadores: \n");
-            else if (idioma == "en") Console.WriteLine("\n Player's History \n");
-            else if (idioma == "cat") Console.WriteLine("\n Historic de Jugadors \n");
+            StreamReader historyLanguage = File.OpenText("../../../lang/" + idioma + "/historyLanguage.txt");
+            Console.WriteLine();
+            Console.WriteLine(historyLanguage.ReadLine());
+            Console.WriteLine();
             StreamReader historicJugadors = File.OpenText("../../../lang/players_history.txt");
             string line;
             while ((line = historicJugadors.ReadLine()) != null)
@@ -649,9 +529,8 @@ namespace Wordle
                 Console.WriteLine("\t" + line);
             }
             historicJugadors.Close();
-            if (idioma == "es") Console.WriteLine("\n Pulsa cualquier tecla para volver al Menu: ");
-            else if (idioma == "en") Console.WriteLine("\n Press any key to return to the Menu");
-            else if (idioma == "cat") Console.WriteLine("\n Pulsa qualsevol tecla per tornar al Menu");
+            Console.WriteLine(historyLanguage.ReadLine());
+            historyLanguage.Close();
             Console.ReadLine();
             Console.Clear();
         }
@@ -693,6 +572,7 @@ namespace Wordle
             Console.Clear();
             informacio.Close();
         }
+
         /// <summary>
         /// Funcio per imprimir per pantalla imatges ASCII.
         /// </summary>

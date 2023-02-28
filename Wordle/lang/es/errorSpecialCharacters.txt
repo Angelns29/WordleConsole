@@ -1,0 +1,1 @@
+[La palabra no puede contener numeros ni caracteres especiales]

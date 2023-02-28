@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "F:\\DAM\\M3\\git\\projectetroncalangelnavarrete\\Wordle\\Wordle.csproj": {}
+    "C:\\Users\\angel\\source\\repos\\projectetroncalangelnavarrete\\Wordle\\Wordle.csproj": {}
   },
   "projects": {
-    "F:\\DAM\\M3\\git\\projectetroncalangelnavarrete\\Wordle\\Wordle.csproj": {
+    "C:\\Users\\angel\\source\\repos\\projectetroncalangelnavarrete\\Wordle\\Wordle.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\DAM\\M3\\git\\projectetroncalangelnavarrete\\Wordle\\Wordle.csproj",
+        "projectUniqueName": "C:\\Users\\angel\\source\\repos\\projectetroncalangelnavarrete\\Wordle\\Wordle.csproj",
         "projectName": "Wordle",
-        "projectPath": "F:\\DAM\\M3\\git\\projectetroncalangelnavarrete\\Wordle\\Wordle.csproj",
-        "packagesPath": "C:\\Users\\argo\\.nuget\\packages\\",
-        "outputPath": "F:\\DAM\\M3\\git\\projectetroncalangelnavarrete\\Wordle\\obj\\",
+        "projectPath": "C:\\Users\\angel\\source\\repos\\projectetroncalangelnavarrete\\Wordle\\Wordle.csproj",
+        "packagesPath": "C:\\Users\\angel\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\angel\\source\\repos\\projectetroncalangelnavarrete\\Wordle\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\argo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\angel\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -54,7 +54,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.415\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.414\\RuntimeIdentifierGraph.json"
         }
       }
     }

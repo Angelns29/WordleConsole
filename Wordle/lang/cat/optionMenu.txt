@@ -1,0 +1,8 @@
+Llenguatge: Catala
+1- JUGAR
+2- HISTÒRIC DE JUGADORS
+3- CAMBIAR IDIOMA
+4- SORTIR
+Que vols fer: 
+Fet per Angel Navarrete
+Opcio Incorrecta

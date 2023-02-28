@@ -1,0 +1,8 @@
+Idioma: Español
+1- JUGAR
+2- HISTORICO DE JUGADORES
+3- CAMBIAR IDIOMA
+4- SALIR
+Que quieres hacer: 
+Hecho por Angel Navarrete
+Opcion Incorrecta

@@ -1,0 +1,8 @@
+Language: English
+1- PLAY
+2- PLAYER'S HISTORY
+3- CHANGE LANGUAGE
+4- EXIT
+What do you want to do: 
+Made by Angel Navarrete
+Incorrect option
