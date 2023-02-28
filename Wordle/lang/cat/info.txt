@@ -1,0 +1,14 @@
+INFORMACIO: 
+WORDLE tracta d'endevinar la paraula en 6 intents. Introdueix paraules de 5 lletres que existeixin i fes clic al boto 'ENTER'.
+Després de cada intent, el color de les lletres canviarà i et donarà pistes de com estàs de prop d'endevinar la paraula.
+Exemple:
+J
+UGAR
+Si el fons es de color Verd es que la lletra esta ben colocada a la paraula
+J
+UGAR
+Si el fons es de color Groc es que la lletra esta mal colocada a la paraula, pero esta a la paraula
+DOTZE
+Si el fons es de color gris es que no esta la lletra a la paraula
+Per comezar a jugar clica a ENTER
+                
