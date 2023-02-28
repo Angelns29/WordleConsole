@@ -44,13 +44,13 @@ namespace Wordle
         /// <returns>Un Array d'string per fer el tractament de l'idioma</returns>
         public string[] ImprimirIdiomes(string pathFitxer)
         {
-            StreamReader sr = File.OpenText(pathFitxer);
-            string[] idiomes = sr.ReadToEnd().Replace("\r\n", " ").Split(':', ' ');
+            StreamReader idiomesText = File.OpenText(pathFitxer);
+            string[] idiomes = idiomesText.ReadToEnd().Replace("\r\n", " ").Split(':', ' ');
             for (int i = 0; i < idiomes.Length; i += 2)
             {
                 Console.WriteLine("- " + idiomes[i].ToUpper());
             }
-            sr.Close();
+            idiomesText.Close();
             return idiomes;
         }
 
@@ -67,6 +67,7 @@ namespace Wordle
             Console.Write(defaultAlert.ReadLine());
             string opcio = Console.ReadLine().Replace("à", "a").Replace("è", "e");
             Console.Clear();
+            defaultAlert.Close();
             return opcio;
         }
 
@@ -199,7 +200,7 @@ namespace Wordle
             CambiarColor("COLOR", ConsoleColor.Yellow);
             StreamReader info = File.OpenText("../../../lang/" + idioma + "/infoInGame.txt");
             Console.WriteLine(info.ReadLine());
-
+            info.Close();
             CambiarColor("COLOR", ConsoleColor.White);
 
             int intents = 6;
@@ -219,29 +220,27 @@ namespace Wordle
                     {
                         StreamReader inputParaula = File.OpenText("../../../lang/" + idioma + "/inputParaula.txt");
                         Console.Write(inputParaula.ReadToEnd());
-                        inputParaula.Close();
+                        
                         paraulaCorrecta = IntroduirParaula(idioma, paraulaATrobar, ref paraulaJugador);
                         if (paraulaCorrecta == false)
                         {
                             CambiarColor("COLOR", ConsoleColor.Red);
-                            Console.WriteLine(info.ReadLine());
+                            StreamReader infoError = File.OpenText("../../../lang/" + idioma + "/infoInGame.txt");
+                            infoError.ReadLine();
+                            Console.WriteLine(infoError.ReadLine());
+                            infoError.Close();
                             CambiarColor("COLOR", ConsoleColor.White);
                         }
+                        bool paraulaCharactersCorrecta = ComprovarCaractersParaulaJugador(paraulaJugador, idioma);
+                        if (paraulaCharactersCorrecta == false)
+                        {
+                            Console.Write(inputParaula.ReadToEnd());
+                            paraulaCorrecta = false;
+                        }
+                        inputParaula.Close();
                     }
                 } while (paraulaCorrecta == false || paraulaJugador == string.Empty);
-                do
-                {
-                    paraulaCorrecta = ComprovarCaractersParaulaJugador(paraulaJugador, idioma);
-                    if (paraulaCorrecta == false)
-                    {
-                        StreamReader inputParaula = File.OpenText("../../../lang/" + idioma + "/inputParaula.txt");
-                        Console.Write(inputParaula.ReadToEnd());
-                        inputParaula.Close();
-                        paraulaCorrecta = IntroduirParaula(idioma, paraulaATrobar, ref paraulaJugador);
-                    }
-                } while (paraulaCorrecta == false);
-                info.Close();
-
+              
                 contadorLetrasCorrectas = MostrarParaula(paraulaJugador, paraulaATrobar, contadorLetrasCorrectas);
                 intents--;
                 if (contadorLetrasCorrectas == 5)
@@ -284,6 +283,7 @@ namespace Wordle
                 Console.WriteLine(info.ReadLine());
                 CambiarColor("COLOR", ConsoleColor.White);
                 //paraulaJugador = "error";
+                info.Close();
                 correcte = false;
             }
             return correcte;
@@ -298,15 +298,15 @@ namespace Wordle
         {
             //string[] paraules = {"JUGAR", "MATAR", "FUMAR", "DUTXA", "ABRIL", "ABANS", "DIGUI", "PILOT", "DOTZE", "MAGIC", "NUVOL", "DIARI", "CANVI", "FUTUR", "RISCS", "BELAI", "VIRUS", "MASSA", "SADIC", "CIVIL", "FUSIO", "PODAR", "SONAR", "AFUAR", "BASCA", "AMANT"  };
             List<string> paraules = new List<string>();
-            StreamReader sr = File.OpenText("../../../lang/" + idioma + "/words.txt");
+            StreamReader paraulesText = File.OpenText("../../../lang/" + idioma + "/words.txt");
             string line;
-            while ((line = sr.ReadLine()) != null)
+            while ((line = paraulesText.ReadLine()) != null)
             {
                 paraules.Add(line);
             }
             Random ran = new Random();
             string paraulaATrobar = paraules[ran.Next(0, paraules.Count)];
-            sr.Close();
+            paraulesText.Close();
             return paraulaATrobar;
         }
 
@@ -344,6 +344,7 @@ namespace Wordle
                 CambiarColor("COLOR", ConsoleColor.White);
 
             }
+            intentsAlert.Close();
             return intents;
         }
 
@@ -367,6 +368,7 @@ namespace Wordle
                     return correcte;
                 }
             }
+            error.Close();
             return correcte;
         }
 
@@ -508,6 +510,7 @@ namespace Wordle
             }
             history.WriteLine(nombre + ":" + resultat);
             history.Close();
+            nomUsuariAlert.Close();
         }
 
         /// <summary>
@@ -580,9 +583,9 @@ namespace Wordle
         /// <param name="nomFitxer">nom del fitxer amb la seva extensió</param>
         void PrintImage(string path, string nomFitxer)
         {
-            StreamReader sr = File.OpenText(path + nomFitxer);
-            Console.WriteLine(sr.ReadToEnd());
-            sr.Close();
+            StreamReader image = File.OpenText(path + nomFitxer);
+            Console.WriteLine(image.ReadToEnd());
+            image.Close();
         }
 
         /// <summary>

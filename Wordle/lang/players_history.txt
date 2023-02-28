@@ -1,3 +1,6 @@
 Peppa Pig:3
 Angel:10
 
+AngelPruebas:3
+AngelPruebasEs:2
+AngelPruebasEN:1
