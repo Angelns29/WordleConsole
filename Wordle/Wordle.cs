@@ -42,7 +42,7 @@ namespace Wordle
         /// </summary>
         /// <param name="pathFitxer">Ubicacio del fitxer de configuracio d'idioma</param>
         /// <returns>Un Array d'string per fer el tractament de l'idioma</returns>
-        string[] ImprimirIdiomes(string pathFitxer)
+        public string[] ImprimirIdiomes(string pathFitxer)
         {
             StreamReader sr = File.OpenText(pathFitxer);
             string[] idiomes = sr.ReadToEnd().Replace("\r\n", " ").Split(':', ' ');
