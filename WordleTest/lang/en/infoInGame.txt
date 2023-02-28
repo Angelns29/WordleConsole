@@ -1,0 +1,2 @@
+[The words to be found and entered will be 5 letters long]
+[The word to enter must be 5 letters]

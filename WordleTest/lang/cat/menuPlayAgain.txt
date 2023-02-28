@@ -1,0 +1,2 @@
+Vols tornar a Jugar(1) o Sortir(0): 
+Opcio Incorrecta

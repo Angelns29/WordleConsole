@@ -1,0 +1,3 @@
+ESPAÑOL:es
+CATALA:cat
+INGLES:en

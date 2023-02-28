@@ -1,0 +1,2 @@
+[Les paraules a trobar i a introduir seran de 5 lletres]
+[La paraula a introduir ha de ser de 5 lletres]

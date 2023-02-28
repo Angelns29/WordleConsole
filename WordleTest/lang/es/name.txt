@@ -1,0 +1,2 @@
+Introduce tu nombre: 
+No has escrito un nombre

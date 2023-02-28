@@ -26,3 +26,17 @@ F:\DAM\ProjecteTroncalAngelNavarrete\Wordle\obj\Debug\netcoreapp3.1\Wordle.cspro
 F:\DAM\ProjecteTroncalAngelNavarrete\Wordle\obj\Debug\netcoreapp3.1\Wordle.dll
 F:\DAM\ProjecteTroncalAngelNavarrete\Wordle\obj\Debug\netcoreapp3.1\Wordle.pdb
 F:\DAM\ProjecteTroncalAngelNavarrete\Wordle\obj\Debug\netcoreapp3.1\Wordle.genruntimeconfig.cache
+C:\Users\angel\source\repos\projectetroncalangelnavarrete\Wordle\bin\Debug\netcoreapp3.1\Wordle.exe
+C:\Users\angel\source\repos\projectetroncalangelnavarrete\Wordle\bin\Debug\netcoreapp3.1\Wordle.deps.json
+C:\Users\angel\source\repos\projectetroncalangelnavarrete\Wordle\bin\Debug\netcoreapp3.1\Wordle.runtimeconfig.json
+C:\Users\angel\source\repos\projectetroncalangelnavarrete\Wordle\bin\Debug\netcoreapp3.1\Wordle.runtimeconfig.dev.json
+C:\Users\angel\source\repos\projectetroncalangelnavarrete\Wordle\bin\Debug\netcoreapp3.1\Wordle.dll
+C:\Users\angel\source\repos\projectetroncalangelnavarrete\Wordle\bin\Debug\netcoreapp3.1\Wordle.pdb
+C:\Users\angel\source\repos\projectetroncalangelnavarrete\Wordle\obj\Debug\netcoreapp3.1\Wordle.csproj.AssemblyReference.cache
+C:\Users\angel\source\repos\projectetroncalangelnavarrete\Wordle\obj\Debug\netcoreapp3.1\Wordle.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\angel\source\repos\projectetroncalangelnavarrete\Wordle\obj\Debug\netcoreapp3.1\Wordle.AssemblyInfoInputs.cache
+C:\Users\angel\source\repos\projectetroncalangelnavarrete\Wordle\obj\Debug\netcoreapp3.1\Wordle.AssemblyInfo.cs
+C:\Users\angel\source\repos\projectetroncalangelnavarrete\Wordle\obj\Debug\netcoreapp3.1\Wordle.csproj.CoreCompileInputs.cache
+C:\Users\angel\source\repos\projectetroncalangelnavarrete\Wordle\obj\Debug\netcoreapp3.1\Wordle.dll
+C:\Users\angel\source\repos\projectetroncalangelnavarrete\Wordle\obj\Debug\netcoreapp3.1\Wordle.pdb
+C:\Users\angel\source\repos\projectetroncalangelnavarrete\Wordle\obj\Debug\netcoreapp3.1\Wordle.genruntimeconfig.cache

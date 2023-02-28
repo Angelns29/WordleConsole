@@ -1,0 +1,14 @@
+INFORMACIÓN: 
+WORDLE trata de adivinar la palabra en 6 intentos. Introduce palabras de 5 letras que existan y haz clic en el botón 'ENTER'.
+Después de cada intento, el color de las letras cambiará y te dará pistas de lo cerca que estás de adivinar la palabra.
+Ejemplo:
+J
+UGAR
+Si el fondo es de color Verde es que la letra esta bien colacada en la palabra
+J
+UGAR
+Si el fondo es de color Amarillo es que la letra esta mal colocada en la palabra, pero existe en la palabra
+AMIGO
+Si el fondo es de color gris es que no esta la lletra en la palabra
+Para empezar a jugar clica a ENTER
+                

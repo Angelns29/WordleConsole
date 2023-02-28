@@ -1,0 +1,2 @@
+[Las palabras a encontrar y a introducir son de 5 letras]
+[La palabra a introducir ha de ser de 5 letras]

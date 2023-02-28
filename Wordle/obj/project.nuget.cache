@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/xK5by2gydXW1OGgu/b6WV2Y1Q/4Bp3G/3cuyzep/mdlreTpVGA4IJ9lnZ/AvG2+w0s0eUk3ZPNHvFMZCorE6A==",
+  "dgSpecHash": "xByWA8rcEJybb9iHr1pBI5vCiwPOFEC1wiohT0zEoRt01NnwxMTXj9q9tWqpKg8pJr+SQ18OmGjsWtZK5m9HGw==",
   "success": true,
-  "projectFilePath": "F:\\DAM\\ProjecteTroncalAngelNavarrete\\Wordle\\Wordle.csproj",
+  "projectFilePath": "C:\\Users\\angel\\source\\repos\\projectetroncalangelnavarrete\\Wordle\\Wordle.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

@@ -1,0 +1,13 @@
+INFORMATION:
+WORDLE tries to guess the word in 6 tries. Enter a 5-letter word that exist and click the 'ENTER' button.
+After each guess, the color of the letters will change, giving you clues as to how close you are to guessing the word.
+Example:
+F
+LAME
+If the background is green, the letter is well placed in the word
+F
+LAME
+If the background is yellow, the letter is wrongly placed in the word, but it exists in the word
+SILLY
+If the background is gray, the letter is not in the word
+To start playing click ENTER

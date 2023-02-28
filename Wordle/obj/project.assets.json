@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\DAM\\ProjecteTroncalAngelNavarrete\\Wordle\\Wordle.csproj",
+      "projectUniqueName": "C:\\Users\\angel\\source\\repos\\projectetroncalangelnavarrete\\Wordle\\Wordle.csproj",
       "projectName": "Wordle",
-      "projectPath": "F:\\DAM\\ProjecteTroncalAngelNavarrete\\Wordle\\Wordle.csproj",
+      "projectPath": "C:\\Users\\angel\\source\\repos\\projectetroncalangelnavarrete\\Wordle\\Wordle.csproj",
       "packagesPath": "C:\\Users\\angel\\.nuget\\packages\\",
-      "outputPath": "F:\\DAM\\ProjecteTroncalAngelNavarrete\\Wordle\\obj\\",
+      "outputPath": "C:\\Users\\angel\\source\\repos\\projectetroncalangelnavarrete\\Wordle\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\angel\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -60,7 +60,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.413\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.414\\RuntimeIdentifierGraph.json"
       }
     }
   }
